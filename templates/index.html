@@ -1,0 +1,26 @@
+{% extends "layout.html" %} 
+{% block body %}
+<h1>Marketplace</h1>
+<ul>
+  {% for id, content in content.items() %}
+  <li>
+    <a href="/content/{{ id }}">{{ content.name }}</a>
+    {% if content.paywalled %} 
+    {% if id in my_library %} (PURCHASED) 
+    {% else %}
+    ({{ "${:,.2f}".format(content.price) }}) 
+    {% endif %} {% endif %}
+  </li>
+  {% endfor %} 
+  {% if admin %}
+  <li><a href="/admin/content-create">NEW CONTENT...</a></li>
+  {% endif %}
+</ul>
+
+{% if admin %}
+<h1>Admin functions</h1>
+<ul>
+  <li><a href="/admin/db-flush">Flush database</a></li>
+</ul>
+{% endif %} 
+{% endblock %}

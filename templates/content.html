@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+{% block body %}
+<h1>{{ content[content_id].name }}</h1>
+<img src="/{{ content[content_id].preview_image }}" style="max-width: 150px" />
+<p>{{ content[content_id].description }}</p>
+{% if content_id in my_library or not content[content_id].paywalled %}
+<a href="/content-file/{{ content_id }}">Download PDF</a>
+{% else %}
+<form action="/checkout/{{ content_id }}" method="POST">
+  <button type="submit" id="checkout-button">
+    Buy {{ content[content_id].name }} for {{ "${:,.2f}".format(content[content_id].price) }}
+  </button>
+</form>
+{% endif %} 
+{% endblock %}

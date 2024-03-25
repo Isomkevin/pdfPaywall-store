@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Books and Manuscripts</title>
+  </head>
+  <body>
+    {% with messages = get_flashed_messages() %} 
+    {% if messages %}
+      <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %} 
+    {% endwith %} 
+    {% if name != None %}
+    <p>Logged in as {{ username }}</p>
+    {% endif %} 
+    {% block body %}{% endblock %}
+  </body>
+</html>

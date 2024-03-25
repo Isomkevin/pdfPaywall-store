@@ -1,0 +1,14 @@
+{% extends "layout.html" %} 
+{% block body %} 
+{% from "_macros.html" import render_field %}
+<h1>Upload content item</h1>
+<form
+  action="/admin/content-create"
+  method="post"
+  enctype="multipart/form-data"
+>
+  {{ render_field(form.name) }} {{ render_field(form.description) }} 
+  {{ render_field(form.file) }} {{ render_field(form.image) }} 
+  {{ render_field(form.price) }} {{ form.csrf_token }} {{ form.submit }}
+</form>
+{% endblock %}
